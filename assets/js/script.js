@@ -1,7 +1,3 @@
-window.onload = function() {
-    $('body').toggleClass('loaded');
-}
-
 var delay = 500;
 $('.special-link').on('click', function () {
     $('.card').toggleClass('flipped');
