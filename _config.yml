@@ -1,0 +1,38 @@
+title: "Sinan Rassam"
+
+# site images
+background_image: "background.jpg"
+profile_image: "profile.jpg"
+
+# quick details:
+bio: I am a final year Computer & Mobile Systems Engineering Student at AUT.
+interest: I am interested in working on software projects and tools that will be usefull to a large number of people.
+location: Auckland, New Zealand
+
+# skills
+skills:
+  - Linux
+  - Web Development
+  - Wordpress
+  - Joomla
+  - HTML
+  - CSS
+  - JavaScript
+  - PHP
+  - MySQL
+  - SQL
+  - Android
+  - Java
+
+# roles
+current_role: Intern @ Les Mills International
+
+# education
+education: Computer & Mobile Systems Engieering @ AUT
+
+# social urls
+github_username:  sinanrassam
+linkedin_username: sinanrassam
+
+# Contact
+formspree_key: xzbjjjay
