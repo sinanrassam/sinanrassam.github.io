@@ -17,11 +17,22 @@
     <title>{{ site.title }} | About Me</title>
 </head>
 
-<body>
+<body class="h-100 d-flex justify-content-center align-items-center">
     <div class="card text-center">
         <div class="banner" style="background-image: url('/assets/img/{{ site.banner_image }}'); 
         background-position: center;">
             <img class="rounded-circle profile-img" src="/assets/img/{{ site.profile_image }}" alt="{{ site.title }}" />
+        </div>
+        <div class="card-inner">
+            <h2 class="profile-name">{{ page.title }}</h2>
+            <p class="profile-bio">{{ site.bio }}</p>
+            <p class="profile-interest">{{ site.interest }}</p>            
+            <p><i class="fas fa-map-marker-alt"></i> {{ site.location }}</p>
+            <p><i class="fas fa-laptop-code"></i> {{ site.skills | array_to_sentence_string: '' }} and more</p>
+            <p><i class="fas fa-briefcase"></i> {{site.current_role}}</p>
+            <p><i class="fas fa-university"></i> {{site.education}}</p>
+            
+            {%- include social-links.html -%}
         </div>
     </div>
 
