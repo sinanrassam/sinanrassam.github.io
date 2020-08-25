@@ -1,4 +1,4 @@
 ---
 layout: default
-title: "Sinan Rassam"
+title: "About Me"
 ---
