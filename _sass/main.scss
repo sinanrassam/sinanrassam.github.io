@@ -78,6 +78,23 @@ body {
     margin-top: 110px;
 }
 
+.profile-name {
+    font-family: 'Source Code Pro', monospace;
+    text-transform: uppercase;
+}
+
+.profile-links {
+    border-top: 1px solid #d3d3d3;
+    padding-top: 15px;
+}
+
+.profile-links h5 {
+    font-family: 'Source Code Pro', monospace;
+    text-transform: uppercase;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
 .social-link {
     cursor: pointer;
 }
