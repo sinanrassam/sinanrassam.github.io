@@ -1,9 +1,13 @@
-$transform-angle: 180deg;
-$card-border-radius: 25px;
-
+// Fonts
 $default-font: sans-serif;
 $special-font: 'Source Code Pro', monospace, $default-font;
 $font: 'Ubuntu', sans-serif, $default-font;
+$font-weight: bold;
+
+$transform-angle: 180deg;
+$card-border-radius: 25px;
+
+$banner-height: 250px;
 
 @keyframes fadein {
     from {
@@ -71,7 +75,7 @@ body {
 
 .banner {
     width: 100%;
-    height: 250px;
+    height: $banner-height;
     margin-bottom: 80px;
 }
 
@@ -96,7 +100,7 @@ body {
 .profile-links h5 {
     font-family: $special-font;
     text-transform: uppercase;
-    font-weight: bold;
+    font-weight: $font-weight;
     margin-bottom: 15px;
 }
 
@@ -111,5 +115,5 @@ body {
 .contact-header {    
     font-family: $special-font;
     text-align: center;
-    font-weight: bold;
+    font-weight: $font-weight;
 }
