@@ -1,8 +1,21 @@
+body {
+    background-color: grey;
+}
+
+.card {
+    width: 35%;
+}
+
+.card-inner {
+    padding: 25px;
+}
+
 .banner {
     width: 100%;
-    height: 350px;
+    height: 275px;
+    margin-bottom: 130px;
 }
 
 .profile-img {
-    margin-top: 225px;
+    margin-top: 175px;
 }
