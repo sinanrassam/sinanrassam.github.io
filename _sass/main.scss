@@ -35,6 +35,9 @@ html {
 body {
     font-family: $font;
     background-color: grey;
+}
+
+.animate {
     animation: fadein 1.3s;
     animation: slideup 0.5s;
 }
