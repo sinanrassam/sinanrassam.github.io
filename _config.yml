@@ -6,8 +6,8 @@ banner_image: "banner.jpg"
 profile_image: "profile.jpg"
 
 # quick details:
-bio: I am a final year Computer & Mobile Systems Engineering Student at AUT.
-interest: I am interested in working on software projects and tools that will be usefull to a large number of people.
+bio: Computer & Mobile Systems Engineering graduate from [Auckland University of Technology](https://www.aut.ac.nz/).
+interest: I am interested in working on projects and tools that will allow me to use and expand my current knowledge and experience in software and programming.
 location: Auckland, New Zealand
 
 # skills
@@ -26,10 +26,10 @@ skills:
   - Java
 
 # roles
-current_role: Intern @ Les Mills International
+current_role: Software Engineer @ [Les Mills International](https://www.lesmills.com/)
 
 # education
-education: Computer & Mobile Systems Engieering @ AUT
+education: Computer & Mobile Systems Engieering graduate from [AUT](https://www.aut.ac.nz/)
 
 # social urls
 github_username:  sinanrassam
