@@ -1,6 +1,6 @@
 # sinanrassam.github.io
 
-Personal portfolio for Sinan Rassam, served by GitHub Pages from the `master` branch at https://sinanrassam.github.io.
+Personal portfolio for Sinan Rassam, served by GitHub Pages from the `main` branch at https://sinanrassam.github.io.
 
 It is a single static page with no build step:
 
