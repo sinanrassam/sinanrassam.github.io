@@ -45,6 +45,12 @@ test('page does not claim to have built the video streaming technology', () => {
   assert.doesNotMatch(html, /streaming platform/i);
 });
 
+test('LesMills product work is described in a tense that covers past and current work', () => {
+  assert.match(html, /I've built and run the backend services/);
+  assert.match(html, /I've worked across LESMILLS\+/);
+  assert.doesNotMatch(html, /I build and run/);
+});
+
 test('LesMills work card covers all three products', () => {
   const card = html.match(/<article class="card">(?:(?!<\/article>)[\s\S])*<h3>LesMills platforms<\/h3>[\s\S]*?<\/article>/)?.[0];
   assert.ok(card, 'missing LesMills platforms card');
