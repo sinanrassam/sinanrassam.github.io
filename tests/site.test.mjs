@@ -41,6 +41,27 @@ test('page writes the company and product names in house style', () => {
   assert.match(html, /LesMills International/);
 });
 
+test('LesMills work card covers all three products', () => {
+  const card = html.match(/<article class="card">(?:(?!<\/article>)[\s\S])*<h3>LesMills platforms<\/h3>[\s\S]*?<\/article>/)?.[0];
+  assert.ok(card, 'missing LesMills platforms card');
+  for (const product of ['LESMILLS+', 'LESMILLS Instructor', 'LESMILLS Content']) {
+    assert.ok(card.includes(product), `card does not mention ${product}`);
+  }
+});
+
+test('selected work links to each live project', () => {
+  const cards = [...html.matchAll(/<article class="card">([\s\S]*?)<\/article>/g)].map((m) => m[1]);
+  const linkFor = (title) => {
+    const card = cards.find((c) => c.includes(`<h3>${title}</h3>`));
+    assert.ok(card, `missing card ${title}`);
+    return card.match(/<a\b[^>]*href="([^"]+)"/)?.[1];
+  };
+  assert.equal(linkFor('LesMills platforms'), 'https://www.lesmills.com/');
+  assert.equal(linkFor('Babylon Charitable Trust'), 'https://babylon.org.nz/');
+  assert.equal(linkFor('Kiwi Bright'), 'https://brighthousewash.co.nz/');
+  assert.equal(linkFor('Homelab'), undefined, 'the homelab is private and has no link');
+});
+
 test('page has about, skills, work and experience sections', () => {
   for (const id of ['about', 'skills', 'work', 'experience']) {
     assert.match(html, new RegExp(`<section[^>]*id="${id}"`), `missing section #${id}`);
