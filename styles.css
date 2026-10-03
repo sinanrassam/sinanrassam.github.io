@@ -214,7 +214,7 @@ p {
 
 .cards {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(400px, 100%), 1fr));
   gap: 20px;
 }
 
@@ -246,6 +246,20 @@ p {
   letter-spacing: 0.04em;
   text-transform: none;
   color: var(--text-quiet);
+}
+
+.card__link {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.card__link:hover,
+.card__link:focus-visible {
+  text-decoration: underline;
 }
 
 /* Experience list */
