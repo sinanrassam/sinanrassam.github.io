@@ -183,30 +183,43 @@ p {
   color: var(--text-quiet);
 }
 
-/* Skills list: one hairline-separated row per group */
+/* Skills: groups of outlined tags in a two-column grid */
 
 .skills {
-  margin: 0;
-  border-top: 1px solid var(--line);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(420px, 100%), 1fr));
+  gap: 28px 48px;
 }
 
-.skills__row {
+.skills__group {
   display: flex;
-  flex-wrap: wrap;
-  gap: 4px 32px;
-  padding: 16px 0;
-  border-bottom: 1px solid var(--line);
+  flex-direction: column;
+  gap: 10px;
 }
 
-.skills dt {
-  flex: 1 1 240px;
+.skills__group h3 {
+  font-size: 17px;
   font-weight: 500;
 }
 
-.skills dd {
-  flex: 999 1 420px;
-  min-width: 0;
+.tags {
+  list-style: none;
   margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tags li {
+  display: inline-flex;
+  align-items: center;
+  min-height: 30px;
+  padding: 0 12px;
+  border: 1px solid var(--line-strong);
+  border-radius: 4px;
+  font-family: var(--font-mono);
+  font-size: 13px;
   color: var(--text-muted);
 }
 
