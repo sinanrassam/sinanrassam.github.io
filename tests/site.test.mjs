@@ -24,6 +24,15 @@ test('page links to LinkedIn and GitHub profiles', () => {
   assert.match(html, /href="https:\/\/github\.com\/sinanrassam"/);
 });
 
+test('external links open in a new tab without exposing the opener', () => {
+  const links = [...html.matchAll(/<a\b[^>]*href="https?:\/\/[^"]*"[^>]*>/g)].map((m) => m[0]);
+  assert.ok(links.length > 0, 'expected at least one external link');
+  for (const link of links) {
+    assert.match(link, /target="_blank"/, `link does not open in a new tab: ${link}`);
+    assert.match(link, /rel="noopener noreferrer"/, `link is missing rel: ${link}`);
+  }
+});
+
 test('page has about, skills, work and experience sections', () => {
   for (const id of ['about', 'skills', 'work', 'experience']) {
     assert.match(html, new RegExp(`<section[^>]*id="${id}"`), `missing section #${id}`);
