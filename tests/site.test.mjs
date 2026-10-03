@@ -96,6 +96,13 @@ test('skill tags are not highlighted', () => {
   assert.doesNotMatch(html, /tag--core/);
 });
 
+test('experience dates sit under the role title on narrow screens', () => {
+  const css = readFileSync(new URL('../styles.css', import.meta.url), 'utf8');
+  const narrow = css.match(/@media \(max-width: 600px\) \{([\s\S]*?)\n\}/)?.[1];
+  assert.ok(narrow, 'missing narrow-screen media query');
+  assert.match(narrow, /\.roles li \{[^}]*flex-direction: column;/);
+});
+
 test('page has about, skills, work and experience sections', () => {
   for (const id of ['about', 'skills', 'work', 'experience']) {
     assert.match(html, new RegExp(`<section[^>]*id="${id}"`), `missing section #${id}`);

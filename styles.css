@@ -304,6 +304,14 @@ p {
   color: var(--text-quiet);
 }
 
+/* Narrow screens: every role puts its dates on their own line */
+@media (max-width: 600px) {
+  .roles li {
+    flex-direction: column;
+    gap: 4px;
+  }
+}
+
 /* Footer */
 
 .footer {
