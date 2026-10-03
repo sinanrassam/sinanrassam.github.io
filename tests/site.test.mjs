@@ -41,6 +41,10 @@ test('page writes the company and product names in house style', () => {
   assert.match(html, /LesMills International/);
 });
 
+test('page does not claim to have built the video streaming technology', () => {
+  assert.doesNotMatch(html, /streaming platform/i);
+});
+
 test('LesMills work card covers all three products', () => {
   const card = html.match(/<article class="card">(?:(?!<\/article>)[\s\S])*<h3>LesMills platforms<\/h3>[\s\S]*?<\/article>/)?.[0];
   assert.ok(card, 'missing LesMills platforms card');
