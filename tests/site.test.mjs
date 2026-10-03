@@ -109,7 +109,7 @@ test('every experience and education row marks up its organisation separately', 
   const rows = [...html.matchAll(/<ol class="roles">([\s\S]*?)<\/ol>/g)].flatMap((m) => [...m[1].matchAll(/<li>([\s\S]*?)<\/li>/g)].map((r) => r[1]));
   assert.equal(rows.length, 6);
   for (const row of rows) {
-    assert.match(row, /<strong>[^<]+<\/strong><span class="roles__org">[^<·]+<\/span>/, `row lacks a separate organisation: ${row}`);
+    assert.match(row, /<strong>[^<]+<\/strong>\s*<span class="roles__org">[^<·]+<\/span>/, `row lacks a separate organisation: ${row}`);
   }
 });
 
@@ -128,20 +128,24 @@ test('page has about, skills, work, experience and education sections', () => {
   }
 });
 
-test('page lists every role from the CV', () => {
-  for (const role of [
-    'Senior Software Engineer',
-    'Software Engineer',
-    'Junior Software Engineer',
-    'Nexlogic',
-  ]) {
-    assert.ok(html.includes(role), `missing role ${role}`);
-  }
+test('experience lists every role from the CV with its organisation and dates', () => {
+  const experience = html.match(/<section[^>]*id="experience"[\s\S]*?<\/section>/)?.[0];
+  assert.ok(experience, 'missing experience section');
+  const rows = [...experience.matchAll(/<strong>([^<]+)<\/strong>\s*<span class="roles__org">([^<]+)<\/span>[\s\S]*?<span class="roles__dates">([^<]+)<\/span>/g)]
+    .map(([, title, org, dates]) => [title, org, dates]);
+  assert.deepEqual(rows, [
+    ['Senior Software Engineer', 'LesMills International', '2022 to now'],
+    ['Software Engineer', 'LesMills International', '2020 to 2022'],
+    ['Junior Software Engineer', 'LesMills International', '2019 to 2020'],
+    ['Software Engineer', 'Nexlogic (freelance)', '2015 to now'],
+  ]);
 });
 
 test('page exposes no phone number or email address', () => {
-  assert.doesNotMatch(html, /REDACTED/);
-  assert.doesNotMatch(html, /@example\.com/);
+  const visibleText = html.replace(/<svg[\s\S]*?<\/svg>/g, '').replace(/<[^>]+>/g, ' ');
+  assert.doesNotMatch(html, /href="(mailto|tel):/i, 'page links to an email address or phone number');
+  assert.doesNotMatch(visibleText, /[\w.+-]+@[\w-]+\.[a-z]{2,}/i, 'page shows an email address');
+  assert.doesNotMatch(visibleText, /\d[\d\s-]{6,}\d/, 'page shows a phone-like run of digits');
 });
 
 test('every local asset the page references exists', () => {
