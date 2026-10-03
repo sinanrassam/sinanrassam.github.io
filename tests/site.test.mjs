@@ -96,18 +96,28 @@ test('skill tags are not highlighted', () => {
   assert.doesNotMatch(html, /tag--core/);
 });
 
-test('experience dates sit under the role title on narrow screens', () => {
+test('experience and education rows stack title, organisation and dates on narrow screens', () => {
   const css = readFileSync(new URL('../styles.css', import.meta.url), 'utf8');
   const narrow = css.match(/@media \(max-width: 600px\) \{([\s\S]*?)\n\}/)?.[1];
   assert.ok(narrow, 'missing narrow-screen media query');
   assert.match(narrow, /\.roles li \{[^}]*flex-direction: column;/);
+  assert.match(narrow, /\.roles__org \{[^}]*display: block;/);
+  assert.match(narrow, /\.roles__org::before \{[^}]*content: none;/);
 });
 
-test('education section lists the degree and the AWS certification period', () => {
+test('every experience and education row marks up its organisation separately', () => {
+  const rows = [...html.matchAll(/<ol class="roles">([\s\S]*?)<\/ol>/g)].flatMap((m) => [...m[1].matchAll(/<li>([\s\S]*?)<\/li>/g)].map((r) => r[1]));
+  assert.equal(rows.length, 6);
+  for (const row of rows) {
+    assert.match(row, /<strong>[^<]+<\/strong><span class="roles__org">[^<·]+<\/span>/, `row lacks a separate organisation: ${row}`);
+  }
+});
+
+test('education section lists the degree and the AWS certification', () => {
   const education = html.match(/<section[^>]*id="education"[\s\S]*?<\/section>/)?.[0];
   assert.ok(education, 'missing education section');
   assert.match(education, /05 \/ Education/);
-  assert.match(education, /AWS Certified Developer, Associate[\s\S]*?2022 to 2025/);
+  assert.match(education, /AWS Certified Developer, Associate[\s\S]*?<span class="roles__dates">2022<\/span>/);
   assert.match(education, /Computer Systems Engineering Bachelor Degree[\s\S]*?Auckland University of Technology[\s\S]*?2020/);
   assert.doesNotMatch(education, /<img/, 'education uses text only, no logos');
 });
