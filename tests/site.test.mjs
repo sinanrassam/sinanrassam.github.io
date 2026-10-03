@@ -103,8 +103,17 @@ test('experience dates sit under the role title on narrow screens', () => {
   assert.match(narrow, /\.roles li \{[^}]*flex-direction: column;/);
 });
 
-test('page has about, skills, work and experience sections', () => {
-  for (const id of ['about', 'skills', 'work', 'experience']) {
+test('education section lists the degree and the AWS certification period', () => {
+  const education = html.match(/<section[^>]*id="education"[\s\S]*?<\/section>/)?.[0];
+  assert.ok(education, 'missing education section');
+  assert.match(education, /05 \/ Education/);
+  assert.match(education, /AWS Certified Developer, Associate[\s\S]*?2022 to 2025/);
+  assert.match(education, /Computer Systems Engineering Bachelor Degree[\s\S]*?Auckland University of Technology[\s\S]*?2020/);
+  assert.doesNotMatch(education, /<img/, 'education uses text only, no logos');
+});
+
+test('page has about, skills, work, experience and education sections', () => {
+  for (const id of ['about', 'skills', 'work', 'experience', 'education']) {
     assert.match(html, new RegExp(`<section[^>]*id="${id}"`), `missing section #${id}`);
   }
 });
