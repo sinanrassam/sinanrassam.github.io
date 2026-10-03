@@ -141,6 +141,13 @@ test('experience lists every role from the CV with its organisation and dates', 
   ]);
 });
 
+test('page offers the full CV on request through LinkedIn', () => {
+  const note = html.match(/<p class="cv-note">([\s\S]*?)<\/p>/)?.[1];
+  assert.ok(note, 'missing CV note');
+  assert.match(note, /Full CV available on request/);
+  assert.match(note, /<a\b[^>]*href="https:\/\/www\.linkedin\.com\/in\/sinanrassam\/"/);
+});
+
 test('page exposes no phone number or email address', () => {
   const visibleText = html.replace(/<svg[\s\S]*?<\/svg>/g, '').replace(/<[^>]+>/g, ' ');
   assert.doesNotMatch(html, /href="(mailto|tel):/i, 'page links to an email address or phone number');
