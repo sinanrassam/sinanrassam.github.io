@@ -33,6 +33,14 @@ test('external links open in a new tab without exposing the opener', () => {
   }
 });
 
+test('page writes the company and product names in house style', () => {
+  assert.doesNotMatch(html, /Les Mills/i, 'company name should be written LesMills');
+  assert.match(html, /LESMILLS\+/);
+  assert.match(html, /LESMILLS Instructor/);
+  assert.match(html, /LESMILLS Content/);
+  assert.match(html, /LesMills International/);
+});
+
 test('page has about, skills, work and experience sections', () => {
   for (const id of ['about', 'skills', 'work', 'experience']) {
     assert.match(html, new RegExp(`<section[^>]*id="${id}"`), `missing section #${id}`);
