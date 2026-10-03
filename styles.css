@@ -328,6 +328,23 @@ p {
   }
 }
 
+/* Closing note pointing to the CV */
+
+.cv-note {
+  margin-top: 56px;
+  color: var(--text-muted);
+}
+
+.cv-note a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.cv-note a:hover,
+.cv-note a:focus-visible {
+  text-decoration: underline;
+}
+
 /* Footer */
 
 .footer {
