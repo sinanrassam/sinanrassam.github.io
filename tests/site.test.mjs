@@ -72,6 +72,24 @@ test('selected work links to each live project', () => {
   assert.equal(linkFor('Homelab'), undefined, 'the homelab is private and has no link');
 });
 
+test('skills section lists every skill group from the CV', () => {
+  const skills = html.match(/<section[^>]*id="skills"[\s\S]*?<\/section>/)?.[0];
+  assert.ok(skills, 'missing skills section');
+  const groups = {
+    'Languages': 'TypeScript, JavaScript, Java, PHP, C#',
+    'Backend': 'Node.js, REST APIs, GraphQL, PostgreSQL',
+    'Frontend': 'React, Apollo, HTML, CSS',
+    'Cloud': 'AWS (Lambda, API Gateway, SNS, SQS, DynamoDB, S3, CloudFront, AppSync)',
+    'Quality &amp; Operations': 'Jest/Mocha, Automated Testing, End-to-End Testing, Playwright, Katalon Studio',
+    'DevOps &amp; Monitoring': 'CI/CD (GitLab, GitHub), Datadog, AWS CloudWatch, PagerDuty, Jira Service Management, CloudFormation',
+    'Architecture &amp; Methodologies': 'Domain-Driven Design (DDD), Event-Driven Architecture (EDA), Microservices, Agile Delivery, Scrum, Kanban',
+  };
+  for (const [name, items] of Object.entries(groups)) {
+    assert.ok(skills.includes(`<dt>${name}</dt>`), `missing skill group ${name}`);
+    assert.ok(skills.includes(`<dd>${items}</dd>`), `wrong skills for ${name}`);
+  }
+});
+
 test('page has about, skills, work and experience sections', () => {
   for (const id of ['about', 'skills', 'work', 'experience']) {
     assert.match(html, new RegExp(`<section[^>]*id="${id}"`), `missing section #${id}`);

@@ -183,31 +183,31 @@ p {
   color: var(--text-quiet);
 }
 
-/* Skills grid: hairline-separated cells */
+/* Skills list: one hairline-separated row per group */
 
 .skills {
-  list-style: none;
   margin: 0;
-  padding: 0;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr));
-  gap: 1px;
-  background: var(--line);
-  border: 1px solid var(--line);
+  border-top: 1px solid var(--line);
 }
 
-.skills li {
+.skills__row {
   display: flex;
-  flex-direction: column;
-  gap: 6px;
-  padding: 20px;
-  background: var(--ground);
-  font-size: 15px;
+  flex-wrap: wrap;
+  gap: 4px 32px;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--line);
 }
 
-.skills__name {
-  font-size: 17px;
+.skills dt {
+  flex: 1 1 240px;
   font-weight: 500;
+}
+
+.skills dd {
+  flex: 999 1 420px;
+  min-width: 0;
+  margin: 0;
+  color: var(--text-muted);
 }
 
 /* Project cards */
