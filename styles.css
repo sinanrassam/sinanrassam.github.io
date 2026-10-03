@@ -297,6 +297,14 @@ p {
   font-weight: 500;
 }
 
+.roles__org {
+  color: var(--text-muted);
+}
+
+.roles__org::before {
+  content: " · ";
+}
+
 .roles__dates {
   font-size: 14px;
   letter-spacing: 0.04em;
@@ -304,11 +312,19 @@ p {
   color: var(--text-quiet);
 }
 
-/* Narrow screens: every role puts its dates on their own line */
+/* Narrow screens: every row stacks title, organisation and dates on their own lines */
 @media (max-width: 600px) {
   .roles li {
     flex-direction: column;
     gap: 4px;
+  }
+
+  .roles__org {
+    display: block;
+  }
+
+  .roles__org::before {
+    content: none;
   }
 }
 
